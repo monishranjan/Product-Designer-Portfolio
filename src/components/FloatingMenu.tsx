@@ -4,7 +4,7 @@ import { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
-import { label } from "framer-motion/client"
+// import { label } from "framer-motion/client"
 
 export default function FloatingMenu() {
     const [isOpen, setIsOpen] = useState(false)
