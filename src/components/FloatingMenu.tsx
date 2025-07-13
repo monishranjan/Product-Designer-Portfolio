@@ -1,55 +1,62 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { AnimatePresence, motion } from "framer-motion"
-import Link from "next/link"
-import { Menu, X } from "lucide-react"
-import { label } from "framer-motion/client"
+import Link from "next/link";
+import { Home, Folder, Briefcase, Mail, FileText } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function FloatingMenu() {
-    const [isOpen, setIsOpen] = useState(false)
+  const [hideMenu, setHideMenu] = useState(false);
+  const footerRef = useRef<HTMLElement | null>(null);
+  const pathname = usePathname();
 
-    const links = [
-        { label: "Home", href: "/" },
-        { label: "About", href: "/about" },
-        { label: "Contact", href: "/contact" },
-        { label: "Projects", href: "/projects" },
-    ]
+  useEffect(() => {
+    footerRef.current = document.querySelector("footer");
+    if (!footerRef.current) return;
 
-    return (
-        <>
-            <button onClick={() => setIsOpen(!isOpen)} className="fixed bottom-4 right-4 z-50 p-3 bg-blue-500 text-white rounded-full shadow-lg">
-                {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setHideMenu(entry.isIntersecting);
+      },
+      { root: null, threshold: 0.1 }
+    );
 
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.div
-                        key="overlay"
-                        initial={{ opacity:0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center gap-10 text-3xl font-semibold"
-                    >
-                        {links.map((link, i) => (
-                            <motion.div
-                                key={link.href}
-                                initial={{ y: 20, opacity: 0 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: i * 0.1 }}
-                            >
-                                <Link
-                                    href={link.href}
-                                    className="hover:underline"
-                                    onClick={() => setIsOpen(false)}
-                                >
-                                    {link.label}
-                                </Link>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </>
-    )
+    observer.observe(footerRef.current);
+    return () => {
+      if (footerRef.current) observer.unobserve(footerRef.current);
+    };
+  }, []);
+
+  const links = [
+    { label: "Home", href: "/", icon: Home },
+    { label: "Projects", href: "/projects", icon: Folder },
+    { label: "Experience", href: "/work", icon: Briefcase },
+    { label: "Contact", href: "/contact", icon: Mail },
+    { label: "Resume", href: "/resume.pdf", icon: FileText },
+  ];
+
+  if (hideMenu) return null;
+
+  return (
+    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-white/20 backdrop-blur-md border border-white/20 shadow-lg px-4 py-3 md:px-6 md:py-4 rounded-2xl max-w-fit w-auto">
+      <div className="flex items-center gap-6 md:gap-8">
+        {links.map(({ href, icon: Icon }) => {
+          const isActive = pathname === href;
+          return (
+            <Link
+              key={href}
+              href={href}
+              className={`flex flex-col items-center text-xs md:text-sm font-medium p-2 md:p-3 rounded-xl transition ${
+                isActive
+                  ? "bg-primary text-white"
+                  : "text-primary/60 hover:text-primary hover:bg-primary/10"
+              }`}
+            >
+              <Icon size={20} className="md:size-6" strokeWidth={1.5} />
+            </Link>
+          );
+        })}
+      </div>
+    </div>
+  );
 }

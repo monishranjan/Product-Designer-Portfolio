@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import "./globals.css";
 import FloatingMenu from "@/components/FloatingMenu"
 
@@ -12,6 +13,7 @@ export default function RootLayout({ children } : { children: React.ReactNode })
       <body className="bg-background text-black font-generalsans">
         {children}
         <FloatingMenu />
+        <Footer />
       </body>
     </html>
   )
