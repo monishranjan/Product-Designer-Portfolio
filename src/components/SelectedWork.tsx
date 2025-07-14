@@ -94,7 +94,7 @@ export default function SelectedWork() {
                         <span className="absolute -left-5 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full border border-gray-400 bg-background p-2 transition group-hover:bg-text group-hover:text-white group-hover:scale-125">
                             <FiArrowLeft className="text-xl" />
                         </span>
-                        <span className="text-lg text-text">View More</span>
+                        <span className="text-lg text-text">View More Projects</span>
                     </Link>
                 </motion.div>
             </div>
