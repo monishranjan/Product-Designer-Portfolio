@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { FaRegCircleDot } from "react-icons/fa6";
 
 export default function Hero() {
@@ -42,12 +43,18 @@ export default function Hero() {
                 Available for Work
               </h3>
               <div className="flex flex-col md:flex-row gap-4 md:gap-6 w-full md:w-auto">
-                <button className="text-lg border border-gray-400 py-2 px-6 md:px-8 rounded-lg hover:bg-primary hover:text-background transition w-full md:w-auto">
+                <Link href="/contact" className="text-lg border border-gray-400 py-2 px-6 md:px-8 rounded-lg hover:bg-primary hover:text-background transition w-full md:w-auto">
                   Let&apos;s Connect
-                </button>
-                <button className="text-lg bg-primary text-background py-2 px-6 md:px-8 rounded-lg w-full md:w-auto">
+                </Link>
+                <a
+                  href="/cvs/monish_ranjan_cv.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-lg bg-primary text-background py-2 px-6 md:px-8 rounded-lg w-full md:w-auto inline-block text-center"
+                >
                   Resume/CV
-                </button>
+                </a>
+
               </div>
             </motion.div>
           </div>

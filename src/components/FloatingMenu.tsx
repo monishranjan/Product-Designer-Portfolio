@@ -32,28 +32,32 @@ export default function FloatingMenu() {
     { label: "Projects", href: "/projects", icon: Folder },
     { label: "Experience", href: "/work", icon: Briefcase },
     { label: "Contact", href: "/contact", icon: Mail },
-    { label: "Resume", href: "/resume.pdf", icon: FileText },
+    { label: "Resume", href: "/cvs/monish_ranjan_cv.pdf", icon: FileText },
   ];
 
   if (hideMenu) return null;
 
   return (
     <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-white/20 backdrop-blur-md border border-white/20 shadow-lg px-4 py-3 md:px-6 md:py-4 rounded-2xl max-w-fit w-auto">
-      <div className="flex items-center gap-6 md:gap-8">
-        {links.map(({ href, icon: Icon }) => {
+      <div className="flex items-center gap-6 md:gap-8 relative">
+        {links.map(({ href, label, icon: Icon }) => {
           const isActive = pathname === href;
           return (
-            <Link
-              key={href}
-              href={href}
-              className={`flex flex-col items-center text-xs md:text-sm font-medium p-2 md:p-3 rounded-xl transition ${
-                isActive
-                  ? "bg-primary text-white"
-                  : "text-primary/60 hover:text-primary hover:bg-primary/10"
-              }`}
-            >
-              <Icon size={20} className="md:size-6" strokeWidth={1.5} />
-            </Link>
+            <div key={href} className="relative group">
+              <Link
+                href={href}
+                className={`flex flex-col items-center text-xs md:text-sm font-medium p-2 md:p-3 rounded-xl transition ${isActive
+                    ? "bg-primary text-white"
+                    : "text-primary/60 hover:text-primary hover:bg-primary/10"
+                  }`}
+              >
+                <Icon size={20} className="md:size-6" strokeWidth={1.5} />
+              </Link>
+              {/* Tooltip */}
+              <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black text-white text-xs rounded-md px-2 py-1 opacity-0 group-hover:opacity-100 transition pointer-events-none z-50">
+                {label}
+              </span>
+            </div>
           );
         })}
       </div>
