@@ -1,11 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, FormEvent } from "react";
 import emailjs from "@emailjs/browser";
 
 export default function ContactPage() {
-  const formRef = useRef(null);
+  const formRef = useRef<HTMLFormElement>(null); // ✅ Typed for form methods
   const [status, setStatus] = useState("");
   const [copied, setCopied] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -16,7 +16,7 @@ export default function ContactPage() {
     setTimeout(() => setCopied(false), 1500);
   };
 
-  const sendEmail = async (e) => {
+  const sendEmail = async (e: FormEvent<HTMLFormElement>) => { // ✅ Typed event
     e.preventDefault();
     setLoading(true);
     setStatus("");
@@ -30,7 +30,7 @@ export default function ContactPage() {
       );
 
       setStatus("✅ Message sent successfully!");
-      formRef.current?.reset();
+      formRef.current?.reset(); // ✅ No TS error
     } catch (error) {
       console.error("EmailJS Error:", error);
       setStatus("❌ Failed to send message. Please try again.");
