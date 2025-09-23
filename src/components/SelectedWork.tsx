@@ -3,30 +3,30 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { FiArrowLeft } from "react-icons/fi";
 
-export default function SelectedWork() {
-    const projectData = [
-        {
-            slug: "burnr-box",
-            name: "Burnr Box",
-            period: "Jan 2023 - Present",
-            domain: "Web Design",
-            description: "This project is about redesigning the ordering system...",
-        },
-        {
-            slug: "fitnest",
-            name: "FitNest App",
-            period: "Aug 2022 - Dec 2022",
-            domain: "Mobile UI",
-            description: "Worked on mobile UX flow for a fitness startup...",
-        },
-    ];
+const projectData = [
+    {
+        slug: "project-1",
+        name: "Project One",
+        period: "Jan 2023 - Present",
+        domain: "Web Design",
+        description: "This project is about redesigning the ordering system...",
+    },
+    {
+        slug: "fitnest",
+        name: "FitNest App",
+        period: "Aug 2022 - Dec 2022",
+        domain: "Mobile UI",
+        description: "Worked on mobile UX flow for a fitness startup...",
+    },
+];
 
+export default function SelectedWork() {
     return (
         <section className="w-full">
             {/* Section Header */}
             <div className="section-header border-b border-gray-500">
                 <h1 className="text-3xl md:text-5xl font-medium text-left pb-2 pl-10">
-                    Selected Work
+                    Selected Works
                 </h1>
             </div>
 
@@ -42,7 +42,7 @@ export default function SelectedWork() {
                     >
                         {/* Entire card clickable */}
                         <Link href={`/projects/${project.slug}`} className="block">
-                            <div className="flex flex-col md:flex-row p-4 md:p-0 gap-6 border-l border-t border-b border-gray-400 rounded-l-xl overflow-hidden">
+                            <div onClick={() => console.log("Clicked Div")} className="flex flex-col md:flex-row p-4 md:p-0 gap-6 border-l border-t border-b border-gray-400 rounded-l-xl overflow-hidden">
                                 <div className="projectImage bg-gray-200 md:w-3/5 w-full rounded-xl md:rounded-l-xl min-h-[300px]" />
 
                                 <div className="md:w-2/5 w-full projectDetail border border-gray-400 md:my-6 md:mr-4 p-4 rounded-xl">

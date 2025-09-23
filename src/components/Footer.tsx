@@ -49,7 +49,7 @@ export default function Footer() {
             <div className="flex flex-wrap justify-between gap-4 border border-gray-400 p-4 rounded-lg">
               <Link href="/" className="text-base hover:underline hover:font-medium">Home</Link>
               <Link href="/projects" className="text-base hover:underline hover:font-medium">Projects</Link>
-              <Link href="/work" className="text-base hover:underline hover:font-medium">Experience</Link>
+              <Link href="/experience" className="text-base hover:underline hover:font-medium">Experience</Link>
               <Link href="/about" className="text-base hover:underline hover:font-medium">About</Link>
               <Link href="/contact" className="text-base hover:underline hover:font-medium">Contact</Link>
             </div>

@@ -39,6 +39,20 @@ const projectData = [
     domain: "Graphic Design",
     description: "Posters, digital banners and creatives for events.",
   },
+  {
+    slug: "project-1",
+    name: "Project 1",
+    period: "Jun 2021 - Jan 2022",
+    domain: "Graphic Design",
+    description: "Posters, digital banners and creatives for events.",
+  },
+  {
+    slug: "project-2",
+    name: "Project 2",
+    period: "Jun 2021 - Jan 2022",
+    domain: "Graphic Design",
+    description: "Posters, digital banners and creatives for events.",
+  },
 ];
 
 export default function ProjectsPage() {
@@ -57,7 +71,7 @@ export default function ProjectsPage() {
       </div>
 
       {/* Project Cards */}
-      <div className="lex flex-col gap-10 pl-20 relative overflow-hidden">
+      <div className="flex flex-col gap-10 pl-20 relative overflow-hidden">
         {projectData.map((project, idx) => (
           <motion.div
             key={project.slug}
