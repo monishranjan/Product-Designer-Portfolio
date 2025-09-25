@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import Link from "next/link";
+// import Link from "next/link";
 import { FiArrowLeft } from "react-icons/fi";
 import Image from "next/image";
 

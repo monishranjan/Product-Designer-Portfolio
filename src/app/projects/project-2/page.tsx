@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function Project2Page() {
   return (
     <div className="min-h-screen bg-background px-6 py-12">
