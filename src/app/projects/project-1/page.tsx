@@ -1,8 +1,13 @@
 "use client";
 import { motion } from "framer-motion";
-// import Link from "next/link";
 import { FiArrowLeft } from "react-icons/fi";
 import Image from "next/image";
+
+// ✅ Import local project images
+import ProjectCover from "./project-image/ProjectCover.svg";
+import WireframeImg from "./project-image/ProjectCover.png";
+import HiFiImg from "./project-image/ProjectCover.png";
+import DesignSystemImg from "./project-image/ProjectCover.png";
 
 export default function Project1Page() {
   const sections = [
@@ -22,7 +27,7 @@ export default function Project1Page() {
           </p>
         </>
       ),
-      image: "/projects/mediversal/cover.png", // ✅ Add a main project cover/mockup here
+      image: ProjectCover, // ✅ now using imported image
     },
     {
       title: "Project Overview",
@@ -33,7 +38,7 @@ export default function Project1Page() {
           healthcare providers and patients and is currently in the internal testing phase.
         </p>
       ),
-      image: "/projects/mediversal/overview.png",
+      image: ProjectCover, // or import a separate overview image if you have one
     },
     {
       title: "Problem Statement",
@@ -54,7 +59,7 @@ export default function Project1Page() {
           steps for core tasks.
         </p>
       ),
-      image: "/projects/mediversal/wireframes.png",
+      image: WireframeImg,
     },
     {
       title: "High-Fidelity Designs",
@@ -64,7 +69,7 @@ export default function Project1Page() {
           admin management. Each screen focused on clarity, accessibility, and efficiency.
         </p>
       ),
-      image: "/projects/mediversal/hifi.png",
+      image: HiFiImg,
     },
     {
       title: "Design System",
@@ -75,7 +80,7 @@ export default function Project1Page() {
           scalability across both app and admin panel.
         </p>
       ),
-      image: "/projects/mediversal/design-system.png",
+      image: DesignSystemImg,
     },
     {
       title: "Interactive Prototypes or Demos",
@@ -110,7 +115,6 @@ export default function Project1Page() {
 
   return (
     <section className="w-full min-h-screen">
-      {/* Page Header */}
       <div className="relative overflow-hidden px-6 md:px-20 pt-10 pb-20">
         {/* Back Button */}
         <motion.div
@@ -132,7 +136,7 @@ export default function Project1Page() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-4xl md:text-6xl font-semibold border border-gray-400 rounded-xl p-6 pt-40 mb-12"
+          className="text-4xl md:text-6xl text-[#0088b1] font-semibold border border-gray-400 rounded-xl p-6 pt-40 mb-12"
         >
           Mediversal Healthcare App
         </motion.h1>
@@ -140,7 +144,6 @@ export default function Project1Page() {
         {/* Sections */}
         <div className="space-y-12">
           {sections.map((section, i) => {
-            // Special case: Project Overview + Problem Statement side by side
             if (section.title === "Project Overview") {
               const problemStatement = sections.find((s) => s.title === "Problem Statement");
               return (
@@ -151,27 +154,16 @@ export default function Project1Page() {
                   transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
                   className="grid grid-cols-1 md:grid-cols-2 gap-6"
                 >
-                  {/* Project Overview */}
                   <div className="border border-gray-300 rounded-xl p-6 shadow-sm">
                     <h2 className="text-2xl font-semibold mb-4">{section.title}</h2>
                     <div className="text-gray-700 leading-relaxed mb-4">{section.content}</div>
                     {section.image && (
                       <div className="relative w-full h-64 rounded-lg overflow-hidden">
-                        <Image
-                          src={section.image}
-                          alt={section.title}
-                          fill
-                          className="object-cover"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.src = "/placeholder.png";
-                          }}
-                        />
+                        <Image src={section.image} alt={section.title} fill className="object-cover" />
                       </div>
                     )}
                   </div>
 
-                  {/* Problem Statement */}
                   {problemStatement && (
                     <div className="border border-gray-300 rounded-xl p-6 shadow-sm">
                       <h2 className="text-2xl font-semibold mb-4">{problemStatement.title}</h2>
@@ -182,7 +174,6 @@ export default function Project1Page() {
               );
             }
 
-            // Skip rendering Problem Statement separately (since already included above)
             if (section.title === "Problem Statement") return null;
 
             return (
@@ -196,23 +187,12 @@ export default function Project1Page() {
                 <h2 className="text-2xl font-semibold mb-4">{section.title}</h2>
                 <div className="text-gray-700 leading-relaxed mb-4">{section.content}</div>
 
-                {/* Image (with fallback) */}
                 {section.image && (
                   <div className="relative w-full h-72 md:h-96 rounded-lg overflow-hidden mb-4">
-                    <Image
-                      src={section.image}
-                      alt={section.title}
-                      fill
-                      className="object-cover"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.src = "/placeholder.png";
-                      }}
-                    />
+                    <Image src={section.image} alt={section.title} fill className="object-cover" />
                   </div>
                 )}
 
-                {/* Prototype Embed */}
                 {section.prototype && (
                   <div className="w-full h-[500px] mt-4">
                     <iframe
